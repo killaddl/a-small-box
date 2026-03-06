@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>法语名词查询</title>
+  <style>
+    body {
+      margin: 50px;
+      font-family: 微软雅黑;
+    }
+    .search-item {
+      margin: 20px 0;
+    }
+    input {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    button {
+      padding: 8px 16px;
+      background: #009966;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>法语名词阴阳性查询</h1>
+
+  <div class="search-item">
+    <h3>🔍 全部单词搜索</h3>
+    <input type="text" id="word1" placeholder="输入单词">
+    <button onclick="search(1)">搜索</button>
+  </div>
+
+  <div class="search-item">
+    <h3>📖 你好法语课本</h3>
+    <input type="text" id="word2" placeholder="输入单词">
+    <button onclick="search(2)">搜索</button>
+  </div>
+
+  <script>
+    // 搜索：type=1 全部，type=2 仅课本
+    function search(type) {
+      let 输入的单词 = type === 1 
+        ? document.getElementById("word1").value 
+        : document.getElementById("word2").value;
+
+      if (!输入的单词) {
+        alert("请输入单词");
+        return;
+      }
+
+      // 跳结果页，带上【单词 + 分类】
+      location.href = `result.html?w=${输入的单词}&t=${type}`;
+    }
+  </script>
+<!-- 腾讯文档反馈入口 -->
+<div style="margin-top:40px; padding-top:20px; border-top:1px solid #ccc;">
+  <h3>问题反馈</h3>
+  <p>点击下方按钮提交反馈，我们会及时处理：</p>
+  <!-- 替换成你的收集表链接 -->
+  <a href="https://docs.qq.com/form/page/DQ1Z1ZVJOUmVDdkVi" 
+     target="_blank" 
+     style="display:inline-block; padding:10px 20px; background:#009966; color:white; text-decoration:none; border-radius:4px;">
+    提交反馈
+  </a>
+</div>
+</body>
+</html>

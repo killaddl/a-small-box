@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>查询结果</title>
+  <style>
+    body {
+      margin: 50px;
+      font-size: 18px;
+    }
+    .back {
+      margin-bottom: 20px;
+      padding: 6px 12px;
+    }
+    .info {
+      color: #004422;
+      font-size: 20px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+  </style>
+
+  <!-- 引入3万单词库 -->
+  <script src="words.js"></script>
+</head>
+<body>
+
+  <button class="back" onclick="history.back()">← 返回</button>
+  <h2>查询结果</h2>
+  <div class="info" id="show"></div>
+
+  <script>
+    // 1. 从网址拿到：单词 + 搜索类型
+    let urlParams = new URLSearchParams(location.search);
+    let 查到的单词 = urlParams.get("w");
+    let 搜索类型 = urlParams.get("t"); // 1=全部，2=课本
+
+    // 2. 筛选单词表
+    let 单词表;
+    if (搜索类型 == 1) {
+      单词表 = 单词库; // 搜全部
+    } else {
+      单词表 = 单词库.filter(item => item.分类 === "你好法语");
+    }
+
+    // 3. 查找
+    let 结果 = 单词表.find(item => item.单词 == 查到的单词);
+
+    // 4. 显示
+    if (结果) {
+      document.getElementById("show").innerText =
+        `单词：${结果.单词}
+性别：${结果.性别}
+规则：${结果.规则}
+分类：${结果.分类}`;
+    } else {
+      document.getElementById("show").innerText = "未找到该单词";
+    }
+  </script>
+</body>
+</html>
